@@ -10,13 +10,35 @@ class Node :
     def insert(self,data) :
         if self.val==data :
             return False
-        elif self.val :
-            self.val.insert(data)
-        else :
-            if self.val > data :
-                self.leftChild=Node(data)
+        elif self.val > data :
+            if self.leftChild :
+                return self.leftChild.insert(data)
             else :
-                self.RightChild=Node(data)
+                self.leftChild=Node(data)
+                return True
+        else :
+            if self.rightChild :
+                return self.rightChild.insert(data)
+            else :
+                self.rightChild=Node(data)
+                return True
+
+    def search (self,data) :
+        if self.val==data :
+            return True
+        elif self.val>data :
+            if self.leftChild :
+                return self.leftChild.search(data)
+            else :
+                return False
+        else :
+            if self.rightChild :
+                return self.rightChild.search(data)
+            else :
+                return False
 
 obj=Node(5)
-obj.insert(6)
+print(obj.insert(6))
+print (obj.insert(10))
+print (obj.insert(11))
+print (obj.search(1))
