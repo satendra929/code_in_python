@@ -9,7 +9,7 @@ class Queue :
         self.list.insert(0,data)
 
     def dequeue(self) :
-        self.list.pop()
+        return self.list.pop()
 
     def isEmpty(self) :
         return self.list==[]
@@ -20,6 +20,8 @@ class Queue :
             return False
     def size(self) :
         return len(self.list)
+    def givelist(self) :
+        return self.list
 
 
 #implementiing a graph first using a dictionary
@@ -31,17 +33,24 @@ graph = {'A': ['B', 'C', 'E'],
          'E': ['A', 'B','D'],
          'F': ['C'],
          'G': ['C']}
+
+
 qobj=Queue()
 qobj.enqueue('A')
 visited=[]
 
-while !qobj.isEmpty :
+
+while (qobj.isEmpty()==False) :
     node=qobj.dequeue()
     if node not in visited :
         visited.append(node)
         neighbours=graph[node]
-    for n in neighbours :
-        visited.insert(0,n)
+        for n in neighbours :
+            if qobj.contain(n) == False :
+                qobj.enqueue(n)
+    print (qobj.givelist())
+    print ("Visited")
+    print (visited)
 
 
 
